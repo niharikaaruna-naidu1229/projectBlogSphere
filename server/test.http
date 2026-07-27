@@ -1,0 +1,130 @@
+### ==========================================
+### LOGIN USER
+### ==========================================
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "niharika123@gmail.com",
+  "password": "Niharika123"
+}
+
+
+### ==========================================
+### CREATE POST
+### ==========================================
+
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjVjNjMzN2MxNTNjNWY4ODdlYjgzZSIsInJvbGUiOiJhdXRob3IiLCJpYXQiOjE3ODUwNjU0NDcsImV4cCI6MTc4NTY3MDI0N30.6KHju5cf-Bg_nTf8QXmz6v92x--VxbrU3WOa-nnUkL4
+
+{
+  "title": "BlogSphere Comments Testing",
+  "content": "This post is created to test the BlogSphere comments functionality.",
+  "excerpt": "Testing comments in BlogSphere.",
+  "status": "published",
+  "tags": ["BlogSphere", "Comments", "JavaScript"],
+  "readTime": 3
+}
+
+
+### ==========================================
+### GET ALL POSTS - SEARCH
+### ==========================================
+
+GET http://localhost:5000/api/posts?search=React
+
+
+### ==========================================
+### CREATE CATEGORY
+### ==========================================
+
+POST http://localhost:5000/api/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjVjNjMzN2MxNTNjNWY4ODdlYjgzZSIsInJvbGUiOiJhdXRob3IiLCJpYXQiOjE3ODUwNjU0NDcsImV4cCI6MTc4NTY3MDI0N30.6KHju5cf-Bg_nTf8QXmz6v92x--VxbrU3WOa-nnUkL4
+
+{
+  "name": "Technology",
+  "description": "Articles about technology, programming and software development."
+}
+
+
+### ==========================================
+### GET ALL CATEGORIES
+### ==========================================
+
+GET http://localhost:5000/api/categories
+
+
+### ==========================================
+### CREATE COMMENT
+### ==========================================
+
+POST http://localhost:5000/api/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjVjNjMzN2MxNTNjNWY4ODdlYjgzZSIsInJvbGUiOiJhdXRob3IiLCJpYXQiOjE3ODUwNjU0NDcsImV4cCI6MTc4NTY3MDI0N30.6KHju5cf-Bg_nTf8QXmz6v92x--VxbrU3WOa-nnUkL4
+
+{
+  "content": "This is a great blog post!",
+  "post": "6a65d9e39ad14c1f91540889"
+}
+
+
+### ==========================================
+### GET COMMENTS FOR POST
+### ==========================================
+
+GET http://localhost:5000/api/comments/post/6a65d9e39ad14c1f91540889
+
+
+### ==========================================
+### LIKE POST
+### ==========================================
+
+POST http://localhost:5000/api/likes/6a65d9e39ad14c1f91540889
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjVjNjMzN2MxNTNjNWY4ODdlYjgzZSIsInJvbGUiOiJhdXRob3IiLCJpYXQiOjE3ODUwNjU0NDcsImV4cCI6MTc4NTY3MDI0N30.6KHju5cf-Bg_nTf8QXmz6v92x--VxbrU3WOa-nnUkL4
+
+
+### ==========================================
+### GET LIKE COUNT
+### ==========================================
+
+GET http://localhost:5000/api/likes/6a65d9e39ad14c1f91540889
+
+
+### ==========================================
+### UNLIKE POST
+### ==========================================
+
+DELETE http://localhost:5000/api/likes/6a65d9e39ad14c1f91540889
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjVjNjMzN2MxNTNjNWY4ODdlYjgzZSIsInJvbGUiOiJhdXRob3IiLCJpYXQiOjE3ODUwNjU0NDcsImV4cCI6MTc4NTY3MDI0N30.6KHju5cf-Bg_nTf8QXmz6v92x--VxbrU3WOa-nnUkL4
+
+
+### ==========================================
+### ADMIN USER MANAGEMENT
+### ==========================================
+
+### GET ALL USERS
+### GET ALL USERS - ADMIN
+GET http://localhost:5000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjVjNjMzN2MxNTNjNWY4ODdlYjgzZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc4NTA2NjEzMCwiZXhwIjoxNzg1NjcwOTMwfQ.Pn-obtjeE2TRN3WQi9cbAe9xY2Rm3KXfn6XQA6ChE0U
+
+### GET SINGLE USER
+GET http://localhost:5000/api/users/6a65c6337c153c5f887eb83e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjVjNjMzN2MxNTNjNWY4ODdlYjgzZSIsInJvbGUiOiJhdXRob3IiLCJpYXQiOjE3ODUwNjU0NDcsImV4cCI6MTc4NTY3MDI0N30.6KHju5cf-Bg_nTf8QXmz6v92x--VxbrU3WOa-nnUkL4
+
+
+### UPDATE USER ROLE
+PUT http://localhost:5000/api/users/6a65c6337c153c5f887eb83e/role
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjVjNjMzN2MxNTNjNWY4ODdlYjgzZSIsInJvbGUiOiJhdXRob3IiLCJpYXQiOjE3ODUwNjU0NDcsImV4cCI6MTc4NTY3MDI0N30.6KHju5cf-Bg_nTf8QXmz6v92x--VxbrU3WOa-nnUkL4
+
+{
+  "role": "admin"
+}
+
+
+### DELETE USER### DELETE USER
+DELETE http://localhost:5000/api/users/USER_ID
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjVjNjMzN2MxNTNjNWY4ODdlYjgzZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc4NTA2NjEzMCwiZXhwIjoxNzg1NjcwOTMwfQ.Pn-obtjeE2TRN3WQi9cbAe9xY2Rm3KXfn6XQA6ChE0U
