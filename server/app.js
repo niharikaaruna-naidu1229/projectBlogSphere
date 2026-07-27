@@ -3,7 +3,23 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
+// ==========================================
+// CORS CONFIGURATION
+// ==========================================
+app.use(
+  cors({
+    origin: [
+      "https://project-blog-sphere-btb3.vercel.app",
+      "https://project-blog-sphere-btb3-8scc0aoq1.vercel.app",
+      "http://localhost:5173",
+    ],
+    credentials: true,
+  })
+);
+
+// ==========================================
+// BODY PARSER
+// ==========================================
 app.use(express.json());
 
 
@@ -19,8 +35,14 @@ app.use("/uploads", express.static("uploads"));
 const authRoutes = require("./routes/authRoutes");
 app.use("/api/auth", authRoutes);
 
+
+// ==========================================
+// PROFILE ROUTES
+// ==========================================
 const profileRoutes = require("./routes/profileRoutes");
 app.use("/api/profile", profileRoutes);
+
+
 // ==========================================
 // POST ROUTES
 // ==========================================
