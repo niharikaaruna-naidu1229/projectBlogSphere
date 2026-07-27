@@ -6,20 +6,36 @@ const app = express();
 // ==========================================
 // CORS CONFIGURATION
 // ==========================================
+const allowedOrigins = [
+  "https://project-blog-sphere-btb3.vercel.app",
+  "http://localhost:5173",
+];
+
 app.use(
   cors({
-    origin: [
-      "https://project-blog-sphere-btb3.vercel.app",
-      "https://project-blog-sphere-btb3-8scc0aoq1.vercel.app",
-      "http://localhost:5173",
-    ],
+    origin: function (origin, callback) {
+      // Allow requests with no origin
+      // (Postman, mobile apps, etc.)
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      // Allow production URL and localhost
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // Allow all Vercel preview deployments
+      if (origin.endsWith(".vercel.app")) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
 
-// ==========================================
-// BODY PARSER
-// ==========================================
 app.use(express.json());
 
 
@@ -73,7 +89,6 @@ app.use("/api/analytics", analyticsRoutes);
 
 // ==========================================
 // USER MANAGEMENT ROUTES
-// Admin: View users, change roles, delete users
 // ==========================================
 const userRoutes = require("./routes/userRoutes");
 app.use("/api/users", userRoutes);
